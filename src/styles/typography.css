@@ -1,0 +1,77 @@
+/* taken from Prism Design System: https://www.figma.com/design/QsfF6h9zf3TzfF3E6JjhYc/Prism-Design-System?m=auto&t=ZOFbsYw1V0MjTmEW-6 */
+
+@theme {
+  /* ---- fonts ---- */
+  --font-prism-title: "Metro Photograph - Demo Version", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+ 
+  /* ---- PRISM title ---- */
+  /* Usage: PRISM Collective title | 200px | weight — (regular) | -3% | 80% */
+  --text-prism-title: 200px;
+  --text-prism-title--line-height: 0.8;
+  --text-prism-title--letter-spacing: -0.03em;
+ 
+  /* ---- Title ---- */
+  /* Usage: Keyword title | 130px | Medium | -5% | 100% */
+  --text-title: 130px;
+  --text-title--line-height: 1;
+  --text-title--letter-spacing: -0.05em;
+  --text-title--font-weight: 500;
+ 
+  /* ---- Header 1 ---- */
+  /* Usage: Section header | 72px | Medium | -5% | 100% */
+  --text-header-1: 72px;
+  --text-header-1--line-height: 1;
+  --text-header-1--letter-spacing: -0.05em;
+  --text-header-1--font-weight: 500;
+ 
+  /* ---- Header 2 ---- */
+  /* Usage: Highlight header | 56px | Medium | -5% | 110% */
+  --text-header-2: 56px;
+  --text-header-2--line-height: 1.1;
+  --text-header-2--letter-spacing: -0.05em;
+  --text-header-2--font-weight: 500;
+ 
+  /* ---- Large Body ---- */
+  /* Usage: Large body | 32px | Medium | -3% | 120% */
+  --text-large-body: 32px;
+  --text-large-body--line-height: 1.2;
+  --text-large-body--letter-spacing: -0.03em;
+  --text-large-body--font-weight: 500;
+ 
+  /* ---- Numerical Body ---- */
+  /* Usage: Numbers only (e.g. stats) | Geist Mono | 24px | Regular | -3% | 120% */
+  --text-numerical-body: 24px;
+  --text-numerical-body--line-height: 1.2;
+  --text-numerical-body--letter-spacing: -0.03em;
+  --text-numerical-body--font-weight: 400;
+ 
+  /* ---- Body 1 Heavy ---- */
+  /* Usage: Body | 24px | Medium | -3% | 120% */
+  --text-body-1-heavy: 24px;
+  --text-body-1-heavy--line-height: 1.2;
+  --text-body-1-heavy--letter-spacing: -0.03em;
+  --text-body-1-heavy--font-weight: 500;
+ 
+  /* ---- Body 1 Regular ---- */
+  /* Usage: Body | 24px | Regular | -3% | 120% */
+  --text-body-1: 24px;
+  --text-body-1--line-height: 1.2;
+  --text-body-1--letter-spacing: -0.03em;
+  --text-body-1--font-weight: 400;
+ 
+  /* ---- Body 2 Heavy ---- */
+  /* Usage: Sub body | 18px | Medium | -3% | 120% */
+  --text-body-2-heavy: 18px;
+  --text-body-2-heavy--line-height: 1.2;
+  --text-body-2-heavy--letter-spacing: -0.03em;
+  --text-body-2-heavy--font-weight: 500;
+ 
+  /* ---- Body 2 Regular ---- */
+  /* Usage: Sub body | 18px | Regular | -3% | 120% */
+  --text-body-2: 18px;
+  --text-body-2--line-height: 1.2;
+  --text-body-2--letter-spacing: -0.03em;
+  --text-body-2--font-weight: 400;
+}
