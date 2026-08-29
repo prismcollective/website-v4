@@ -1,0 +1,12 @@
+@theme {
+  /* stat values gradient (e.g. "500+") */
+  --color-stat-number-from: #FF68C1;
+  --color-stat-number-to: #C36CA9;
+ 
+  /* stat text gradient (e.g. "members in our community") */
+  --color-stat-label-from: #A420A2;
+  --color-stat-label-to: #DC2490;
+
+  /* floating square colours */
+
+}
