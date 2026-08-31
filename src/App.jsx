@@ -8,7 +8,7 @@ import Sponsors from "./components/Sponsors";
 
 export default function App() {
   return (
-    <div className="site-shell">
+    <div className="overflow-x-clip">
       <Hero />
       <main>
         <Intro />

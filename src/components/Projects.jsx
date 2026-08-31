@@ -17,6 +17,10 @@ import hangouts from "../assets/projects/art-tech-hangouts.webp";
 import chevronLeft from "../assets/icons/chevron-left.svg";
 import chevronRight from "../assets/icons/chevron-right.svg";
 
+const tagListClassName = "mt-[0.35rem] flex flex-wrap gap-2";
+const tagClassName =
+  "rounded border border-white px-[0.55rem] py-[0.4rem] text-[0.95rem]";
+
 const projects = [
   [
     "2025",
@@ -110,18 +114,27 @@ function ProjectCard({ project, priority, onOpen }) {
 
   return (
     <button
-      className="project-card"
+      className="group relative min-h-[560px] w-full cursor-pointer overflow-hidden border-0 bg-[var(--surface-raised)] p-0 text-left max-[800px]:min-h-[72svw]"
       type="button"
       onClick={onOpen}
       aria-label={`Open ${title} project carousel`}
     >
-      <img src={image} alt="" loading={priority ? "eager" : "lazy"} />
-      <div className="project-overlay">
-        <span className="project-year">{year}</span>
-        <h3>{title}</h3>
-        <div className="tags">
+      <img
+        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+        src={image}
+        alt=""
+        loading={priority ? "eager" : "lazy"}
+      />
+      <div className="absolute right-0 bottom-0 left-0 flex flex-col items-start gap-[0.3rem] bg-gradient-to-b from-transparent to-black/90 px-6 pt-24 pb-6 text-white">
+        <span className="font-mono text-xl">{year}</span>
+        <h3 className="m-0 text-[clamp(1.4rem,2.1vw,2rem)] leading-[1.15] font-medium">
+          {title}
+        </h3>
+        <div className={tagListClassName}>
           {tags.map((tag) => (
-            <span key={tag}>{tag}</span>
+            <span className={tagClassName} key={tag}>
+              {tag}
+            </span>
           ))}
         </div>
       </div>
@@ -152,63 +165,84 @@ function ProjectCarousel({ index, onChange, onClose }) {
 
   return (
     <div
-      className="carousel-dialog"
+      className="fixed inset-0 z-[100] grid cursor-zoom-out place-items-center overflow-hidden bg-black/80 text-white backdrop-blur-2xl"
       role="dialog"
       aria-modal="true"
       aria-labelledby="carousel-title"
       onClick={onClose}
     >
       <div
-        className="carousel-content"
+        className="grid h-full w-full cursor-default grid-cols-[minmax(0,1fr)] grid-rows-[auto_1fr_auto] items-center overflow-hidden py-5 pb-7 max-[800px]:py-4"
         onClick={(event) => event.stopPropagation()}
       >
         <button
-          className="carousel-close"
+          className="absolute top-[0.85rem] right-4 z-[3] grid size-10 cursor-pointer place-items-center border-0 bg-transparent p-0 text-[1.45rem] leading-none font-light text-white transition-opacity hover:opacity-70"
           type="button"
           onClick={onClose}
           aria-label="Close project carousel"
         >
           ×
         </button>
-        <div className="carousel-copy" key={`copy-${index}`}>
-          <span className="project-year">{year}</span>
-          <h2 id="carousel-title">{title}</h2>
-          <p>{descriptions[title]}</p>
-          <div className="tags">
+        <div
+          className="mx-auto w-[min(1000px,calc(100%_-_2rem))] animate-[carousel-copy-in_0.32s_ease-out_both] text-center max-[800px]:self-end"
+          key={`copy-${index}`}
+        >
+          <span className="font-mono text-xl">{year}</span>
+          <h2
+            className="my-[0.35rem] text-[2rem] tracking-[-0.03em] max-[800px]:text-[1.6rem]"
+            id="carousel-title"
+          >
+            {title}
+          </h2>
+          <p className="mx-auto mt-[0.3rem] mb-[0.65rem] max-w-[900px] text-lg leading-[1.2] max-[800px]:text-[0.95rem]">
+            {descriptions[title]}
+          </p>
+          <div className={`${tagListClassName} justify-center`}>
             {tags.map((tag) => (
-              <span key={tag}>{tag}</span>
+              <span className={tagClassName} key={tag}>
+                {tag}
+              </span>
             ))}
           </div>
         </div>
-        <div className="carousel-stage" key={`stage-${index}`}>
+        <div
+          className="relative left-1/2 grid w-max -translate-x-1/2 animate-[carousel-stage-in_0.38s_cubic-bezier(0.22,0.75,0.25,1)_both] grid-cols-[minmax(220px,602px)_minmax(320px,602px)_minmax(220px,602px)] items-center gap-[7.25rem] justify-self-start max-[800px]:grid-cols-[70vw_82vw_70vw] max-[800px]:gap-4"
+          key={`stage-${index}`}
+        >
           <img
-            className="carousel-side"
+            className="h-[min(560px,58vh)] w-[602px] object-cover opacity-70 max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full max-[800px]:opacity-45"
             src={projects[previousIndex][2]}
             alt=""
             aria-hidden="true"
           />
-          <img className="carousel-active" src={image} alt={title} />
           <img
-            className="carousel-side"
+            className="relative z-[1] h-[min(560px,58vh)] w-[602px] object-cover max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full"
+            src={image}
+            alt={title}
+          />
+          <img
+            className="h-[min(560px,58vh)] w-[602px] object-cover opacity-70 max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full max-[800px]:opacity-45"
             src={projects[nextIndex][2]}
             alt=""
             aria-hidden="true"
           />
         </div>
-        <div className="carousel-controls">
+        <div className="mx-auto flex w-[min(800px,calc(100%_-_2rem))] items-center justify-between justify-self-center text-base">
           <button
+            className="grid size-12 cursor-pointer place-items-center border-0 bg-transparent p-1"
             type="button"
             onClick={() => onChange(previousIndex)}
             aria-label="Previous project"
           >
-            <img src={chevronLeft} alt="" />
+            <img className="size-10" src={chevronLeft} alt="" />
           </button>
           <button
+            className="grid size-12 cursor-pointer place-items-center border-0 bg-transparent p-1"
             type="button"
             onClick={() => onChange(nextIndex)}
             aria-label="Next project"
           >
-            <img src={chevronRight} alt="" />
+            <img className="size-10 rotate-180" src={chevronRight} alt="" />
           </button>
         </div>
       </div>
@@ -220,26 +254,35 @@ export default function Projects() {
   const [activeProject, setActiveProject] = useState(null);
 
   return (
-    <section className="projects section" id="projects">
-      <div className="container">
-        <h2 className="title">featured</h2>
-        <article className="lead-project">
-          <img src={rhythms} alt="Rhythms of Chaos installation" />
-          <div>
-            <span className="project-year">2026</span>
-            <h3>Rhythms of Chaos</h3>
-            <p>
+    <section className="pt-8 pb-[var(--section-space)]" id="projects">
+      <div className="mx-auto w-[min(calc(100%_-_2_*_var(--page-gutter)),var(--content-max))]">
+        <h2 className="m-0 text-[clamp(4.5rem,8.6vw,8.125rem)] leading-none font-medium tracking-[-0.05em]">
+          featured
+        </h2>
+        <article className="my-14 mb-4 grid grid-cols-[1.05fr_1fr] items-end gap-4 max-[800px]:grid-cols-1">
+          <img
+            className="h-[470px] w-full object-cover max-[800px]:h-80"
+            src={rhythms}
+            alt="Rhythms of Chaos installation"
+          />
+          <div className="flex flex-col items-start gap-3">
+            <span className="font-mono text-xl">2026</span>
+            <h3 className="m-0 text-[2rem] font-medium">Rhythms of Chaos</h3>
+            <p className="m-0 text-[1.45rem] leading-[1.25]">
               Rhythms of Chaos transforms the unpredictable motion of layered
               double pendulums into an immersive interplay of light, sound, and
               movement. PRISM’s first large-scale installation was exhibited at
               Trillium Park as part of Lumière.
             </p>
-            <a className="outline-button" href="#projects">
+            <a
+              className="inline-flex w-fit items-center gap-[0.45rem] rounded border border-[var(--border-primary)] bg-transparent px-4 py-[0.7rem] text-[clamp(1.1rem,1.6vw,1.5rem)] font-medium transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--text-primary)] hover:text-[var(--surface-page)]"
+              href="#projects"
+            >
               Project Details <span aria-hidden="true">→</span>
             </a>
           </div>
         </article>
-        <div className="project-grid">
+        <div className="grid grid-cols-2 gap-4 max-[800px]:grid-cols-1">
           {projects.map((project, index) => (
             <ProjectCard
               project={project}

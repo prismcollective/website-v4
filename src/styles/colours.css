@@ -42,6 +42,6 @@
 }
 :root {
   --content-max: 1360px;
-  --page-gutter: clamp(1.5rem, 5vw, 4.75rem);
-  --section-space: clamp(6rem, 10vw, 9rem);
+  --page-gutter: clamp(1rem, 5vw, 4.75rem);
+  --section-space: clamp(5rem, 10vw, 9rem);
 }

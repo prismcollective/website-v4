@@ -17,7 +17,7 @@ export default function ThemeToggle() {
 
   return (
     <button
-      className="theme-toggle"
+      className="grid size-7 cursor-pointer place-items-center border-0 bg-transparent p-0 text-[1.45rem]"
       type="button"
       onClick={() => setTheme(nextTheme)}
       aria-label={`Switch to ${nextTheme} mode`}
