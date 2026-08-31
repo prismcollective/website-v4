@@ -1,15 +1,15 @@
-const PRISM_LOGO = ;
-const UWATERLOO = ;
-const CHIP = ;
-const GLOW = ;
-const PEOPLE = ;
-const STARS = ;
+import PRISM_LOGO from "../assets/intro/prism-logo.png";
+import UWATERLOO from "../assets/intro/uwaterloo.png";
+import CHIP from "../assets/intro/chip.svg";
+import GLOW from "../assets/intro/glow.png";
+import PEOPLE from "../assets/intro/people.svg";
+import STARS from "../assets/intro/stars.svg";
 
 export default function Intro() {
   return (
     <section className="max-w-[1360px] mx-auto px-6 py-24">
       {/* Header 2 (56px / medium / -5% / 110%) at md+; mobile uses a scaled-down size */}
-      <p className="text-black font-sans text-3xl font-medium leading-[1.1] tracking-[-0.05em] md:text-header-2 max-w-4xl">
+      <p className="text-[var(--text-primary)] font-sans text-3xl font-medium leading-[1.1] tracking-[-0.05em] md:text-header-2 max-w-4xl">
         PRISM Collective{" "}
         <img
           src={PRISM_LOGO}

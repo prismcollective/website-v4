@@ -1,16 +1,32 @@
-# React + Vite
+# PRISM Collective website
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Responsive React/Vite implementation of the PRISM Collective website.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm ci
+npm run dev
+```
 
-## React Compiler
+Quality checks: `npm run lint` and `npm run build`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Design system
 
-## Expanding the Oxlint configuration
+The site is dark-first and supports a persisted light theme. Theme values live in `src/styles/colours.css` as semantic surface, text, border, and action properties. Decorative gradients use generic visual names such as `--gradient-pink-dark`, rather than names tied to a particular component.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Typography tokens live in `src/styles/typography.css`. Metro Photograph is served locally as WOFF2, while Inter and Geist Mono fall back to system sans-serif and monospace fonts when unavailable.
+
+## Content and assets
+
+Project content is centralized in `src/components/Projects.jsx`. Figma image exports are committed as optimized WebP assets under `src/assets/projects`.
+
+## Deployment
+
+Run `npm run build` and publish `dist` to any static host. Recommended Cloudflare Pages, Netlify, or Vercel settings:
+
+- Build command: `npm run build`
+- Output directory: `dist`
+- Node.js: 22 or newer
+
+Set the production domain after the team chooses its hosting account and DNS owner.
