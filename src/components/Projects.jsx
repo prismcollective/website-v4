@@ -44,7 +44,6 @@ import lightBendingGalleryOne from "../assets/project-galleries/light-bending-01
 import lightBendingGalleryTwo from "../assets/project-galleries/light-bending-03.webp";
 import bassGallery from "../assets/project-galleries/bass-robot-01.webp";
 import chevronLeft from "../assets/icons/chevron-left.svg";
-import chevronRight from "../assets/icons/chevron-right.svg";
 
 const tagListClassName =
   "mt-[0.35rem] flex flex-wrap gap-[6px] min-[801px]:gap-2";
@@ -373,7 +372,7 @@ function ProjectCarousel({ project, onClose }) {
               onClick={() => setImageIndex(nextIndex)}
               aria-label={`Next ${title} photo`}
             >
-              <img className="size-10 rotate-180" src={chevronRight} alt="" />
+              <img className="size-10 rotate-180" src={chevronLeft} alt="" />
             </button>
           </div>
         ) : (

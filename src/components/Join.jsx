@@ -6,38 +6,32 @@ import FIGURE_PURPLE from "../assets/join/figure-purple.svg";
 import FIGURE_YELLOW from "../assets/join/figure-yellow.svg";
 import InteractiveSquare from "./InteractiveSquare";
 
-const SQUARES = [
-  [75.7, 27.38, 1.92, 3.5, "#ad2694"],
-  [72.78, 11.94, 2.22, 3.5, "#09daff"],
-  [13.31, 22.13, 1.91, 3.5, "#ad2694"],
-  [41.23, 79.12, 2.01, 3.18, "#f04181"],
-  [88.61, 71.16, 3.42, 5.25, "#ffc340"],
-  [51.81, 18.63, 3.43, 5.25, "#ffc340"],
-  [38.91, 33.11, 3.43, 5.25, "#cd59a4"],
-  [61.69, 49.99, 3.43, 5.25, "#e3d698"],
-  [57.06, 71.16, 1.61, 2.39, "#c1bed5"],
-  [15.32, 40.11, 3.43, 5.25, "#c8e2b4"],
-  [9.17, 70.36, 2.22, 3.5, "#09daff"],
-  [30.44, 44.89, 2.22, 3.5, "#b469b3"],
+const JOIN_COLORS = [
+  "#ad2694",
+  "#09daff",
+  "#f04181",
+  "#ffc340",
+  "#cd59a4",
+  "#e3d698",
+  "#c1bed5",
+  "#c8e2b4",
+  "#b469b3",
 ];
 
-const JOIN_EMISSION_TARGETS = SQUARES.flatMap(
-  ([left, top, width, height, color], squareIndex) =>
-    [0, 1, 2].map((variant) => ({
-      color,
-      height,
-      left:
-        variant === 0
-          ? left
-          : Math.max(-4, Math.min(101, left + ((squareIndex * 17 + variant * 29) % 31) - 15)),
-      targetKey: `${squareIndex}-${variant}`,
-      top:
-        variant === 0
-          ? top
-          : Math.max(-4, Math.min(101, top + ((squareIndex * 13 + variant * 23) % 29) - 14)),
-      width,
-    })),
-);
+const JOIN_ARTWORK_ASPECT_RATIO = 992 / 628;
+
+const JOIN_SQUARES = Array.from({ length: 36 }, (_, index) => {
+  const size = 1.55 + ((index * 29) % 21) / 10;
+
+  return {
+    color: JOIN_COLORS[(index * 5) % JOIN_COLORS.length],
+    height: size * JOIN_ARTWORK_ASPECT_RATIO,
+    left: 5 + ((index * 47 + 11) % 89),
+    targetKey: `join-square-${index}`,
+    top: 7 + ((index * 61 + 17) % 84),
+    width: size,
+  };
+});
 
 function JoinArtwork() {
   return (
@@ -72,13 +66,15 @@ function JoinArtwork() {
         className="absolute top-[46.63%] left-[65.35%] h-[47.6%] w-[30.23%] -rotate-[17.59deg] skew-x-[2.29deg]"
       />
 
-      {JOIN_EMISSION_TARGETS.map(
+      {JOIN_SQUARES.map(
         ({ left, top, width, height, color, targetKey }, index) => (
         <InteractiveSquare
           key={targetKey}
           className="absolute"
           color={color}
           spawnOrigin={{ x: 0.5, y: 0.5 }}
+          emissionIndex={index}
+          emissionTotal={JOIN_SQUARES.length}
           label={`Animate join artwork square ${index + 1}`}
           style={{
             height: `${height}%`,

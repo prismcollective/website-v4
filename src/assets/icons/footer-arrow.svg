@@ -1,10 +1,1 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Icon/Outline/arrow-right" clip-path="url(#clip0_0_4)">
-<path id="Icon" d="M9.16661 15.667L14.9999 9.83362L9.16661 4.00029M14.9999 9.83362L-5.92649e-05 9.83362" stroke="white" stroke-width="2.04167"/>
-</g>
-<defs>
-<clipPath id="clip0_0_4">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-</defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" overflow="visible" preserveAspectRatio="none" style="display:block" viewBox="0 0 20 20"><g clip-path="url(#a)"><path stroke="#fff" stroke-width="2.042" d="M9.167 15.667 15 9.834 9.167 4M15 9.834H0"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>

@@ -9,47 +9,23 @@ import PERSON_RIGHT from "../assets/intro/person-right.svg";
 import SPARKLES from "../assets/intro/sparkles.svg";
 import InteractiveSquare from "./InteractiveSquare";
 
-const INTRO_SQUARES = [
-  {
-    className: "absolute top-[158px] left-[18.42%] z-20 size-[54px] max-md:hidden",
-    color: "#f2ffa1",
-    label: "Animate lime intro square",
-  },
-  {
-    className: "absolute top-[486px] left-[25.33%] z-20 size-7 max-md:hidden",
-    color: "#ff096c",
-    label: "Animate pink intro square",
-  },
-  {
-    className: "absolute top-[469px] left-[8.53%] z-20 size-[74px] max-md:hidden",
-    color: "var(--border-primary)",
-    label: "Animate outlined intro square",
-    outline: true,
-  },
-  {
-    className: "absolute top-[-16px] left-1 z-20 size-[74px] max-md:hidden",
-    color: "var(--border-primary)",
-    label: "Animate outlined intro square",
-    outline: true,
-  },
-  {
-    className: "absolute top-[700px] left-[9%] z-20 size-[39px] max-md:hidden",
-    color: "#09daff",
-    glowColor: "#09daff",
-    label: "Animate cyan intro square",
-  },
-];
+const INTRO_COLORS = ["#f2ffa1", "#ff096c", "#09daff", "#b469b3"];
 
-const INTRO_EMISSION_TARGETS = INTRO_SQUARES.flatMap((square, squareIndex) =>
-  [0, 1, 2].map((variant) => ({
-    ...square,
-    offset:
-      variant === 0
-        ? "0 0"
-        : `${((squareIndex * 83 + variant * 127) % 321) - 160}px ${((squareIndex * 59 + variant * 97) % 281) - 140}px`,
-    targetKey: `${squareIndex}-${variant}`,
-  })),
-);
+const INTRO_SQUARES = Array.from({ length: 15 }, (_, index) => {
+  const outline = index % 7 === 3;
+  const size = 22 + ((index * 31) % 54);
+
+  return {
+    color: outline
+      ? "var(--border-primary)"
+      : INTRO_COLORS[(index * 3) % INTRO_COLORS.length],
+    left: 1 + ((index * 43 + 7) % 31),
+    outline,
+    size,
+    targetKey: `intro-square-${index}`,
+    top: -16 + ((index * 137 + 41) % 777),
+  };
+});
 
 export default function Intro() {
   return (
@@ -67,17 +43,22 @@ export default function Intro() {
           className="h-[1150px] w-[1075px] max-w-none flex-none -rotate-90 max-md:h-[788px] max-md:w-[803px] max-md:opacity-40"
         />
       </div>
-      {INTRO_EMISSION_TARGETS.map((square) => (
+      {INTRO_SQUARES.map((square, index) => (
         <InteractiveSquare
           key={square.targetKey}
-          className={square.className}
+          className="absolute z-20 max-md:hidden"
           color={square.color}
-          glowColor={square.glowColor}
           outline={square.outline}
           outlineWidth="2.643px"
           spawnOrigin={{ x: 0.36, y: 0.5 }}
-          style={{ translate: square.offset }}
-          label={square.label}
+          emissionIndex={index}
+          emissionTotal={INTRO_SQUARES.length}
+          style={{
+            height: square.size,
+            left: `${square.left}%`,
+            top: square.top,
+            width: square.size,
+          }}
         />
       ))}
 

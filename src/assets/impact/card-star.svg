@@ -1,6 +1,1 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="37.2" height="37.2" viewBox="0 0 37.2 37.2" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Frame 551">
-<rect x="0.3" y="0.3" width="36.6" height="36.6" stroke="black" stroke-width="0.6"/>
-<path id="Portal" d="M18.6044 9.60575C19.6683 14.0087 22.9298 17.4803 27.081 18.5774C22.9161 19.6781 19.6476 23.1695 18.5947 27.5931C17.5304 23.1907 14.2699 19.7194 10.1191 18.6224C14.2842 17.5215 17.5518 14.0297 18.6044 9.60575Z" fill="black" stroke="black" stroke-width="0.729681"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="37.2" height="37.2" fill="none" overflow="visible" preserveAspectRatio="none" style="display:block" viewBox="0 0 37.2 37.2"><g stroke="#000"><path stroke-width=".6" d="M.3.3h36.6v36.6H.3z"/><path fill="#000" stroke-width=".73" d="M18.604 9.606c1.064 4.403 4.326 7.874 8.477 8.971-4.165 1.101-7.433 4.592-8.486 9.016-1.065-4.402-4.325-7.874-8.476-8.97 4.165-1.102 7.433-4.593 8.485-9.017Z"/></g></svg>

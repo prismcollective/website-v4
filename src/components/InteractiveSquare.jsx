@@ -12,6 +12,7 @@ const PARTICLE_COLORS = [
 ];
 const GRAVITY = 480;
 const PARTICLE_COUNT = 12;
+const EMISSION_CYCLE_MS = 18000;
 
 // Click bursts use real constant-gravity projectile positions at each keyframe.
 function createParticles() {
@@ -101,13 +102,19 @@ export default function InteractiveSquare({
   outlineWidth = "1px",
   glowColor,
   spawnOrigin,
-  emissionCount = 1,
+  directionJitter = 0.9,
+  emissionIndex = 0,
+  emissionTotal = 1,
+  maxSpawnDuration = 11400,
+  minSpawnScale = 0.55,
+  minSpawnDuration = 8800,
+  maxSpawnScale = 1.45,
   className = "",
   style,
 }) {
   const [burst, setBurst] = useState(null);
   const buttonRef = useRef(null);
-  const spawnLayerRefs = useRef([]);
+  const spawnLayerRef = useRef(null);
 
   const resolvedGlowColor = outline ? "#ffffff" : glowColor || color || "#ffffff";
 
@@ -128,7 +135,7 @@ export default function InteractiveSquare({
     if (
       !spawnOrigin ||
       !buttonRef.current ||
-      spawnLayerRefs.current.length === 0 ||
+      !spawnLayerRef.current ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
       return;
@@ -151,7 +158,7 @@ export default function InteractiveSquare({
       const targetY = squareBounds.top + squareBounds.height / 2;
       const rawDirectionX = targetX - originX;
       const rawDirectionY = targetY - originY;
-      const angleJitter = (Math.random() - 0.5) * 0.9;
+      const angleJitter = (Math.random() - 0.5) * directionJitter;
       const directionX =
         rawDirectionX * Math.cos(angleJitter) -
         rawDirectionY * Math.sin(angleJitter);
@@ -176,17 +183,16 @@ export default function InteractiveSquare({
       const startTranslateY = originY - targetY;
       const endTranslateX = endX - targetX;
       const endTranslateY = endY - targetY;
-      const distance = Math.hypot(endX - originX, endY - originY);
-      const targetScale = 0.55 + Math.random() * 0.9;
+      const targetScale =
+        minSpawnScale + Math.random() * (maxSpawnScale - minSpawnScale);
       const emissionColor = outline
         ? "#ffffff"
         : PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
       // Layers are recycled, so color is updated without triggering a React render.
       spawnLayer.style.setProperty("--emission-color", emissionColor);
-      const duration = Math.max(
-        7200,
-        (distance / (36 + Math.random() * 18)) * 1000,
-      );
+      const duration =
+        minSpawnDuration +
+        Math.random() * (maxSpawnDuration - minSpawnDuration);
 
       const transformAt = (progress, scale) => {
         const x = startTranslateX + (endTranslateX - startTranslateX) * progress;
@@ -229,19 +235,16 @@ export default function InteractiveSquare({
           if (cancelled) return;
           restartTimers[emissionIndex] = window.setTimeout(
             () => runSpawn(spawnLayer, emissionIndex),
-            4200,
+            EMISSION_CYCLE_MS - duration,
           );
         })
         .catch(() => {});
     };
 
-    // Stagger only the first run; completed layers restart on the fixed cadence above.
-    spawnLayerRefs.current.slice(0, emissionCount).forEach((spawnLayer, index) => {
-      initialTimers[index] = window.setTimeout(
-        () => runSpawn(spawnLayer, index),
-        Math.random() * 6500,
-      );
-    });
+    initialTimers[0] = window.setTimeout(
+      () => runSpawn(spawnLayerRef.current, 0),
+      (emissionIndex / emissionTotal) * EMISSION_CYCLE_MS,
+    );
 
     return () => {
       cancelled = true;
@@ -249,7 +252,17 @@ export default function InteractiveSquare({
       restartTimers.forEach((timer) => window.clearTimeout(timer));
       animations.forEach((animation) => animation?.cancel());
     };
-  }, [emissionCount, spawnOrigin]);
+  }, [
+    directionJitter,
+    emissionIndex,
+    emissionTotal,
+    maxSpawnDuration,
+    maxSpawnScale,
+    minSpawnDuration,
+    minSpawnScale,
+    spawnOrigin?.x,
+    spawnOrigin?.y,
+  ]);
 
   return (
     <span
@@ -258,41 +271,33 @@ export default function InteractiveSquare({
       aria-hidden="true"
       ref={buttonRef}
     >
-      {Array.from(
-        { length: spawnOrigin ? emissionCount : 1 },
-        (_, emissionIndex) => (
-          <span
-            className="absolute inset-0 block size-full"
-            key={emissionIndex}
-            onClick={launchParticles}
-            ref={(node) => {
-              spawnLayerRefs.current[emissionIndex] = node;
-            }}
-            style={{ opacity: spawnOrigin ? 0 : 1 }}
-          >
+      <span
+        className="absolute inset-0 block size-full"
+        onClick={launchParticles}
+        ref={spawnLayerRef}
+        style={{ opacity: spawnOrigin ? 0 : 1 }}
+      >
+        <span
+          className="block size-full"
+          style={{
+            filter: outline
+              ? "drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 10px #ffffff)"
+              : `drop-shadow(0 0 4px var(--emission-color, ${resolvedGlowColor})) drop-shadow(0 0 10px var(--emission-color, ${resolvedGlowColor}))`,
+          }}
+        >
           <span
             className="block size-full"
-            style={{
-              filter: outline
-                ? "drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 10px #ffffff)"
-                : `drop-shadow(0 0 4px var(--emission-color, ${resolvedGlowColor})) drop-shadow(0 0 10px var(--emission-color, ${resolvedGlowColor}))`,
-            }}
-          >
-            <span
-              className="block size-full"
-              style={
-                outline
-                  ? {
-                      border: `${outlineWidth} solid #ffffff`,
-                      boxSizing: "border-box",
-                    }
-                  : { backgroundColor: `var(--emission-color, ${color})` }
-              }
-            />
-          </span>
-          </span>
-        ),
-      )}
+            style={
+              outline
+                ? {
+                    border: `${outlineWidth} solid #ffffff`,
+                    boxSizing: "border-box",
+                  }
+                : { backgroundColor: `var(--emission-color, ${color})` }
+            }
+          />
+        </span>
+      </span>
       {burst && <ParticleBurst burst={burst} key={burst.key} />}
     </span>
   );

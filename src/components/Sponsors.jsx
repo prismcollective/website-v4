@@ -64,7 +64,7 @@ export default function Sponsors() {
       </div>
       <p className="text-[18px] leading-[1.2] font-medium tracking-[-0.03em] md:text-large-body">
         we are grateful for your support that has made it possible for us to
-        continue to build up this community of creatives.
+        build this community of creatives.
       </p>
     </section>
   );

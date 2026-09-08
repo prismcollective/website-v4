@@ -1,16 +1,1 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="528.779" height="355" viewBox="0 0 528.779 355" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Group 57">
-<line id="Line 9" x1="0.5" y1="218" x2="0.5" y2="355" stroke="black"/>
-<line id="Line 8" x1="506.047" y1="217.5" x2="4.32032e-08" y2="217.5" stroke="url(#paint0_linear_0_13)"/>
-<line id="Line 10" x1="505.547" y1="217" x2="505.547" y2="45" stroke="white"/>
-<g id="Frame 510">
-<rect width="11" height="11" transform="translate(500.233 70)" fill="#F2FFA1"/>
-</g>
-</g>
-<defs>
-<linearGradient id="paint0_linear_0_13" x1="1.29609e-07" y1="216.5" x2="506.047" y2="216.5" gradientUnits="userSpaceOnUse">
-<stop offset="0.0692533"/>
-<stop offset="0.141795" stop-color="white"/>
-</linearGradient>
-</defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="528.779" height="355" fill="none" overflow="visible" preserveAspectRatio="none" style="display:block" viewBox="0 0 528.779 355"><path stroke="#000" d="M.5 218v137"/><path stroke="url(#a)" d="M506.047 217.5H0"/><path stroke="#fff" d="M505.547 217V45"/><path fill="#f2ffa1" d="M500.233 70h11v11h-11z"/><defs><linearGradient id="a" x1="0" x2="506.047" y1="216.5" y2="216.5" gradientUnits="userSpaceOnUse"><stop offset=".069"/><stop offset=".142" stop-color="#fff"/></linearGradient></defs></svg>

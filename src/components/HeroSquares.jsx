@@ -1,6 +1,6 @@
 import InteractiveSquare from "./InteractiveSquare";
 
-const squares = [
+const HERO_PALETTE = [
   {
     color: "#09daff",
     glowColor: "#09daff",
@@ -66,39 +66,31 @@ const squares = [
   },
 ];
 
-const offsetValue = (value, offset) =>
-  offset === 0 ? value : `calc(${value} + ${offset}px)`;
+// A single flat field: every entry is an independent emission target rather
+// than one of three variants clustered around a parent square.
+const HERO_SQUARES = Array.from({ length: 30 }, (_, index) => {
+  const paletteSquare = HERO_PALETTE[(index * 7) % HERO_PALETTE.length];
+  const sizeScale = 0.62 + ((index * 19) % 73) / 100;
+  const desktopSize = 12 + Math.round(42 * sizeScale);
+  const mobileSize = 9 + Math.round(32 * sizeScale);
 
-// Deterministic offsets fan duplicate layers out without changing between renders.
-const emissionTargets = squares.flatMap((square, squareIndex) =>
-  [0, 1, 2].map((variant) => {
-    const desktopX =
-      variant === 0 ? 0 : ((squareIndex * 73 + variant * 131) % 281) - 140;
-    const desktopY =
-      variant === 0 ? 0 : ((squareIndex * 47 + variant * 89) % 221) - 110;
-    const mobileX =
-      variant === 0 ? 0 : ((squareIndex * 37 + variant * 61) % 101) - 50;
-    const mobileY =
-      variant === 0 ? 0 : ((squareIndex * 29 + variant * 43) % 121) - 60;
-
-    return {
-      ...square,
-      desktop: [
-        offsetValue(square.desktop[0], desktopX),
-        offsetValue(square.desktop[1], desktopY),
-        square.desktop[2],
-        square.desktop[3],
-      ],
-      mobile: [
-        offsetValue(square.mobile[0], mobileX),
-        offsetValue(square.mobile[1], mobileY),
-        square.mobile[2],
-        square.mobile[3],
-      ],
-      targetKey: `${squareIndex}-${variant}`,
-    };
-  }),
-);
+  return {
+    ...paletteSquare,
+    desktop: [
+      `${32 + ((index * 47 + 13) % 48)}%`,
+      `${105 + ((index * 131 + 29) % 690)}px`,
+      `${desktopSize}px`,
+      `${desktopSize}px`,
+    ],
+    mobile: [
+      `${-52 + ((index * 83 + 17) % 446)}px`,
+      `${62 + ((index * 109 + 31) % 650)}px`,
+      `${mobileSize}px`,
+      `${mobileSize}px`,
+    ],
+    targetKey: `hero-square-${index}`,
+  };
+});
 
 function HeroSquare({ square, index }) {
   const [desktopLeft, desktopTop, desktopWidth, desktopHeight] = square.desktop;
@@ -108,9 +100,16 @@ function HeroSquare({ square, index }) {
   return (
     <InteractiveSquare
       color={square.color}
+      directionJitter={1.5}
       glowColor={square.glowColor}
       outline={square.outline}
-      spawnOrigin={{ x: 0.49, y: 0.415 }}
+      spawnOrigin={{ x: 0.49, y: 0.35 }}
+      emissionIndex={index}
+      emissionTotal={HERO_SQUARES.length}
+      minSpawnDuration={12500}
+      maxSpawnDuration={15500}
+      minSpawnScale={0.38}
+      maxSpawnScale={0.9}
       className="absolute left-[var(--desktop-left)] top-[var(--desktop-top)] h-[var(--desktop-height)] w-[var(--desktop-width)] cursor-pointer border-0 bg-transparent p-0 max-[800px]:left-[var(--mobile-left)] max-[800px]:top-[var(--mobile-top)] max-[800px]:h-[var(--mobile-height)] max-[800px]:w-[var(--mobile-width)]"
       style={{
         "--desktop-left": desktopLeft,
@@ -134,7 +133,7 @@ export default function HeroSquares() {
       aria-hidden="false"
     >
       <div className="pointer-events-auto contents">
-        {emissionTargets.map((square, index) => (
+        {HERO_SQUARES.map((square, index) => (
           <HeroSquare square={square} index={index} key={square.targetKey} />
         ))}
       </div>

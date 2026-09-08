@@ -1,5 +1,1 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Twitter">
-<path id="Vector" d="M25.7488 5.82129H29.8809L20.8536 16.1389L31.4735 30.1789H23.1582L16.6453 21.6637L9.19313 30.1789H5.05858L14.7142 19.143L4.52646 5.82129H13.0529L18.9399 13.6045L25.7488 5.82129ZM24.2986 27.7057H26.5882L11.8088 8.16462H9.35177L24.2986 27.7057Z" fill="white"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" overflow="visible" preserveAspectRatio="none" style="display:block" viewBox="0 0 36 36"><path fill="#fff" d="M25.749 5.821h4.132L20.854 16.14l10.62 14.04h-8.316l-6.513-8.515-7.452 8.515H5.06l9.655-11.036L4.526 5.821h8.527l5.887 7.784zm-1.45 21.885h2.29L11.808 8.165H9.352z"/></svg>
