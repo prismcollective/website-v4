@@ -24,7 +24,6 @@ import arGalleryOne from "../assets/project-galleries/ar-workshop-01.webp";
 import arGalleryTwo from "../assets/project-galleries/ar-workshop-02.webp";
 import mindGardenGalleryOne from "../assets/project-galleries/mind-garden-02.webp";
 import mindGardenGalleryTwo from "../assets/project-galleries/mind-garden-03.webp";
-import symposiumGalleryOne from "../assets/project-galleries/symposium-01.webp";
 import symposiumGalleryTwo from "../assets/project-galleries/symposium-02.webp";
 import symposiumGalleryThree from "../assets/project-galleries/symposium-03.webp";
 import daydreamGallery from "../assets/project-galleries/daydream-02.webp";
@@ -144,7 +143,6 @@ const projectGalleries = {
   "Mind Garden": [mindGardenGalleryOne, mindGardenGalleryTwo],
   "Light Bending": [lightBendingGalleryOne, lightBendingGalleryTwo],
   "Presenting at the Socratica Symposium": [
-    symposiumGalleryOne,
     symposiumGalleryTwo,
     symposiumGalleryThree,
   ],
