@@ -1,12 +1,67 @@
 @theme {
-  /* stat values gradient (e.g. "500+") */
-  --color-stat-number-from: #FF68C1;
-  --color-stat-number-to: #C36CA9;
- 
-  /* stat text gradient (e.g. "members in our community") */
-  --color-stat-label-from: #A420A2;
-  --color-stat-label-to: #DC2490;
-
-  /* floating square colours */
-
+  --color-pink-300: #ffa1fd;
+  --color-pink-500: #ff68c1;
+  --color-pink-700: #ad2694;
+  --color-cyan-400: #09daff;
+  --color-lime-300: #f2ffa1;
+}
+:root,
+[data-theme="dark"] {
+  --surface-page: #050505;
+  --surface-raised: #171717;
+  --surface-card: #080808;
+  --text-primary: #fff;
+  --text-muted: #aaa;
+  --border-primary: #fff;
+  --border-subtle: #555;
+  --action-bg: #050505;
+  --action-text: #fff;
+  --focus-ring: #09daff;
+  --line-art-filter: brightness(0) invert(1);
+  --selection-bg: #fa00d0;
+  --selection-text: #050505;
+  --footer-surface: rgba(0, 0, 0, 0.8);
+  --footer-text: #fff;
+  --footer-icon-filter: none;
+  --accent-pink-soft: rgba(255, 104, 193, 0.22);
+  --gradient-pink-dark:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+    linear-gradient(180deg, #ffaede 0%, #fa00d0 67.788%);
+  --gradient-pink-bright:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+    linear-gradient(180deg, #ec4cea 55.288%, #ffb7e1 100%);
+  --gradient-cyan-lime: linear-gradient(180deg, #09daff 0%, #f2ffa1 100%);
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --surface-page: #fff;
+  --surface-raised: #ededed;
+  --surface-card: #fff;
+  --text-primary: #101010;
+  --text-muted: #676767;
+  --border-primary: #101010;
+  --border-subtle: #c8c6c0;
+  --action-bg: #101010;
+  --action-text: #fff;
+  --focus-ring: #ad2694;
+  --line-art-filter: none;
+  --selection-bg: #fa00d0;
+  --selection-text: #fff;
+  --footer-surface: rgba(255, 255, 255, 0.8);
+  --footer-text: #101010;
+  --footer-icon-filter: brightness(0);
+  --accent-pink-soft: rgba(173, 38, 148, 0.14);
+  --gradient-pink-dark: linear-gradient(180deg, #ff68c1 0%, #c36ca9 67.788%);
+  --gradient-pink-bright: linear-gradient(
+    180deg,
+    #a420a2 32.212%,
+    #dc2490 100%
+  );
+  --gradient-cyan-lime: linear-gradient(180deg, #007e9a, #779300);
+  color-scheme: light;
+}
+:root {
+  --content-max: 1360px;
+  --page-gutter: clamp(1rem, 5vw, 4.75rem);
+  --section-space: clamp(5rem, 10vw, 9rem);
 }
