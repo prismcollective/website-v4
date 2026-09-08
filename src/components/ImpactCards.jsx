@@ -63,6 +63,7 @@ const FIGURES = [
 
 function CardSurface({ card, compact = false }) {
   return (
+    /* Nested clipped layers create a consistent one-pixel border around the cut corner. */
     <div className="w-full bg-[var(--border-primary)] p-px [clip-path:polygon(0_0,100%_0,100%_100%,32px_100%,0_calc(100%_-_32px))]">
       <div
         className={`${compact ? "min-h-[218px] px-6 pt-6 pb-12" : "min-h-[247px] px-7 pt-6 pb-12"} flex w-full flex-col gap-5 bg-[var(--surface-card)] [clip-path:polygon(0_0,100%_0,100%_100%,31px_100%,0_calc(100%_-_31px))]`}
@@ -134,6 +135,7 @@ export default function ImpactCards() {
 
   const selectCard = (index) => {
     setActiveCard(index);
+    // A changing key lets a second click replay the connector animation.
     setConnectorAnimation((iteration) => iteration + 1);
   };
 
@@ -160,6 +162,7 @@ export default function ImpactCards() {
               mobile
             />
           ))}
+          {/* The negative bottom crosses the flex gap and meets the card border. */}
           <span
             key={`mobile-line-${activeCard}-${connectorAnimation}`}
             className="pointer-events-none absolute top-[43.05%] bottom-[-17px] z-[8] w-[var(--figure-connector-stroke)] origin-top animate-[connector-mobile-straight-in_700ms_cubic-bezier(0.22,0.75,0.25,1)_both] bg-[linear-gradient(to_bottom,#fff_0%,#fff_72%,var(--border-primary)_100%)]"

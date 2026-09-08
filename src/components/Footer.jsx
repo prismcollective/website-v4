@@ -89,6 +89,7 @@ function SocialLinks({ compact = false }) {
 }
 
 function DesktopCollage() {
+  // These percentages mirror the Figma composition and scale as one responsive canvas.
   const maskStyle = (source) => ({
     WebkitMaskImage: `url(${source})`,
     WebkitMaskPosition: "center",

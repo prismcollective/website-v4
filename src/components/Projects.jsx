@@ -51,6 +51,7 @@ const tagListClassName =
 const tagClassName =
   "rounded-[2.565px] border-[0.641px] border-white p-[5.13px] text-xs leading-[1.2] min-[801px]:rounded min-[801px]:border min-[801px]:px-[0.55rem] min-[801px]:py-[0.4rem] min-[801px]:text-[0.95rem]";
 
+// Alternating spans reproduce the intentionally offset Figma masonry rhythm.
 const desktopCardLayout = [
   "min-[801px]:col-span-5",
   "min-[801px]:col-span-7",
@@ -266,6 +267,7 @@ function ProjectCarousel({ project, onClose }) {
       }
     };
 
+    // Lock the document while the portaled modal owns scrolling and keyboard input.
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKey);
 
@@ -282,6 +284,7 @@ function ProjectCarousel({ project, onClose }) {
       aria-modal="true"
       aria-labelledby="carousel-title"
       onClick={(event) => {
+        // Only the dimmed backdrop closes the modal; controls and media remain interactive.
         if (!event.target.closest("[data-carousel-content]")) onClose();
       }}
     >

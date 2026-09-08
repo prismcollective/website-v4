@@ -69,6 +69,7 @@ const squares = [
 const offsetValue = (value, offset) =>
   offset === 0 ? value : `calc(${value} + ${offset}px)`;
 
+// Deterministic offsets fan duplicate layers out without changing between renders.
 const emissionTargets = squares.flatMap((square, squareIndex) =>
   [0, 1, 2].map((variant) => {
     const desktopX =

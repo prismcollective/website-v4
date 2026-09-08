@@ -17,6 +17,7 @@ export default function useScrollReveal(rootRef) {
     const sections = [...root.querySelectorAll(REVEAL_SELECTOR)];
     const animations = new Set();
 
+    // Inline setup prevents a flash; cleanup restores readable content if the hook unmounts.
     sections.forEach((section) => {
       section.style.opacity = "0";
       section.style.transform = "translateY(24px)";

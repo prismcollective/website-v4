@@ -4,6 +4,7 @@ import Header from "./Header";
 import HeroSquares from "./HeroSquares";
 
 function GlowLetters({ text }) {
+  // Keep words intact while retaining a separately glowable span per letter.
   return text.split(/(\s+)/).map((token, tokenIndex) => {
     if (/^\s+$/.test(token)) {
       return " ";
@@ -66,10 +67,12 @@ export default function Hero() {
     glowFrameRef.current = requestAnimationFrame(() => {
       const glowRadius = 180;
 
+      // Direct style updates avoid a full React render for every pointer movement.
       heroRef.current
         ?.querySelectorAll("[data-hero-letter]")
         .forEach((letter) => {
           const bounds = letter.getBoundingClientRect();
+          // Distance to the glyph box feels natural even when the cursor is inside it.
           const distanceX = Math.max(
             bounds.left - pointerX,
             0,

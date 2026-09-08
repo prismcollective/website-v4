@@ -13,6 +13,7 @@ const PARTICLE_COLORS = [
 const GRAVITY = 480;
 const PARTICLE_COUNT = 12;
 
+// Click bursts use real constant-gravity projectile positions at each keyframe.
 function createParticles() {
   return Array.from({ length: PARTICLE_COUNT }, (_, index) => {
     const direction = Math.random() < 0.5 ? -1 : 1;
@@ -67,6 +68,7 @@ function ParticleBurst({ burst }) {
   }, [burst]);
 
   return createPortal(
+    // The portal keeps viewport-based burst coordinates independent of section clipping.
     <span
       className="pointer-events-none fixed z-[200] block size-0 overflow-visible"
       data-particle-burst
@@ -140,6 +142,7 @@ export default function InteractiveSquare({
     const runSpawn = (spawnLayer, emissionIndex) => {
       if (cancelled || !buttonRef.current || !spawnLayer) return;
 
+      // spawnOrigin is normalized to the square's positioned parent, not the square itself.
       const parentBounds = buttonRef.current.offsetParent.getBoundingClientRect();
       const squareBounds = buttonRef.current.getBoundingClientRect();
       const originX = parentBounds.left + parentBounds.width * spawnOrigin.x;
@@ -155,6 +158,7 @@ export default function InteractiveSquare({
       const directionY =
         rawDirectionX * Math.sin(angleJitter) +
         rawDirectionY * Math.cos(angleJitter);
+      // Intersect the particle's ray with the parent bounds so it reaches an edge.
       const horizontalEdgeScale =
         directionX >= 0
           ? (parentBounds.right - originX) / directionX
@@ -177,6 +181,7 @@ export default function InteractiveSquare({
       const emissionColor = outline
         ? "#ffffff"
         : PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
+      // Layers are recycled, so color is updated without triggering a React render.
       spawnLayer.style.setProperty("--emission-color", emissionColor);
       const duration = Math.max(
         7200,
@@ -212,6 +217,7 @@ export default function InteractiveSquare({
         ],
         {
           duration,
+          // Linear easing preserves the requested constant emitter velocity.
           easing: "linear",
           fill: "both",
         },
@@ -229,6 +235,7 @@ export default function InteractiveSquare({
         .catch(() => {});
     };
 
+    // Stagger only the first run; completed layers restart on the fixed cadence above.
     spawnLayerRefs.current.slice(0, emissionCount).forEach((spawnLayer, index) => {
       initialTimers[index] = window.setTimeout(
         () => runSpawn(spawnLayer, index),
