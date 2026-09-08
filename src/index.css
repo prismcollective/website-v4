@@ -6,11 +6,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overscroll-behavior: none;
     background: var(--surface-page);
   }
 
   body {
     min-width: 320px;
+    overscroll-behavior: none;
     background: var(--surface-page);
     color: var(--text-primary);
     font-family: var(--font-sans);
@@ -22,6 +24,11 @@
   :focus-visible {
     outline: 3px solid var(--focus-ring);
     outline-offset: 4px;
+  }
+
+  ::selection {
+    background: var(--selection-bg);
+    color: var(--selection-text);
   }
 }
 
@@ -40,12 +47,175 @@
 @keyframes carousel-stage-in {
   from {
     opacity: 0.35;
-    transform: translateX(calc(-50% + 28px)) scale(0.985);
+    transform: translateX(28px) scale(0.985);
   }
 
   to {
     opacity: 1;
-    transform: translateX(-50%) scale(1);
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes mobile-menu-surface-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mobile-menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobile-menu-prism-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.92) rotate(-3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes mobile-menu-close-in {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes theme-icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-35deg) scale(0.65);
+  }
+
+  65% {
+    transform: rotate(7deg) scale(1.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+@keyframes connector-x-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes connector-elbow-in {
+  from {
+    opacity: 0;
+    transform: rotate(90deg) scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(90deg) scaleX(1);
+  }
+}
+
+@keyframes connector-center-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes connector-right-in {
+  from {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes connector-square-in {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes connector-path-in {
+  from {
+    opacity: 0;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    opacity: 1;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes connector-mobile-straight-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hero-square-pop {
+  0% {
+    opacity: 0;
+    scale: 0.2;
+  }
+  68% {
+    opacity: 1;
+    scale: 1.16;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
   }
 }
 
