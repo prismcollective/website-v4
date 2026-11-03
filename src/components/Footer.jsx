@@ -221,7 +221,7 @@ export default function Footer() {
           alt=""
           aria-hidden="true"
           data-footer-prism
-          className="pointer-events-none absolute top-[68px] left-[134px] z-0 h-[333px] w-[339px] max-w-none -rotate-[6.35deg] opacity-25 blur-[5.8px] md:top-[2%] md:left-1/2 md:h-[62%] md:w-auto md:-translate-x-1/2 md:rotate-0 md:opacity-20 md:blur-[18px]"
+          className="pointer-events-none absolute top-[68px] left-[134px] z-0 h-[333px] w-[339px] max-w-none -rotate-[6.35deg] opacity-25 blur-[5.8px] md:top-[2%] md:left-1/2 md:h-[62%] md:w-auto md:-translate-x-1/2 md:rotate-0 md:opacity-32 md:brightness-110 md:blur-[13px]"
         />
 
         <div className="relative z-10 flex h-full flex-col justify-between md:mx-auto md:h-[63.8716%] md:w-[89.881%] md:items-center md:justify-center md:gap-[clamp(24px,3.5714vw,54px)]">
