@@ -150,19 +150,19 @@ export default function ImpactCards() {
           ))}
           <button
             type="button"
-            className="absolute top-1/2 left-1 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/55 bg-black/35 text-2xl leading-none text-white backdrop-blur-sm transition hover:border-white hover:bg-black/60 min-[1100px]:hidden"
+            className="absolute top-1/2 left-1 z-20 flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center border-0 bg-transparent p-0 font-mono text-[32px] leading-none text-white transition-transform hover:scale-110 min-[1100px]:hidden"
             onClick={() => selectCard((activeCard + FIGURES.length - 1) % FIGURES.length)}
             aria-label="Show previous mission figure"
           >
-            <span aria-hidden="true">←</span>
+            <span aria-hidden="true">&lt;</span>
           </button>
           <button
             type="button"
-            className="absolute top-1/2 right-1 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/55 bg-black/35 text-2xl leading-none text-white backdrop-blur-sm transition hover:border-white hover:bg-black/60 min-[1100px]:hidden"
+            className="absolute top-1/2 right-1 z-20 flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center border-0 bg-transparent p-0 font-mono text-[32px] leading-none text-white transition-transform hover:scale-110 min-[1100px]:hidden"
             onClick={() => selectCard((activeCard + 1) % FIGURES.length)}
             aria-label="Show next mission figure"
           >
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">&gt;</span>
           </button>
           {/* The negative bottom crosses the flex gap and meets the card border. */}
           <span
