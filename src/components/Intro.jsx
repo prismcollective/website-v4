@@ -32,13 +32,13 @@ export default function Intro() {
       className="relative min-h-[532px] w-full overflow-visible p-0 md:min-h-[878px] md:py-24 md:pt-[153px]"
     >
       <div
-        className="pointer-events-none absolute top-[-116px] left-[-636px] flex h-[1075px] w-[1150px] items-center justify-center max-md:top-[124px] max-md:right-0 max-md:left-auto max-md:h-[803px] max-md:w-[788px]"
+        className="pointer-events-none absolute top-[18px] left-0 flex h-[760px] w-[520px] items-center justify-center max-md:top-[92px] max-md:right-[-176px] max-md:left-auto max-md:h-[540px] max-md:w-[432px]"
         aria-hidden="true"
       >
         <img
           src={INTRO_ART}
           alt=""
-          className="h-[1075px] w-[860px] max-w-none flex-none object-contain [filter:saturate(1.08)_contrast(1.04)_drop-shadow(0_0_44px_rgba(57,163,255,0.16))] max-md:h-[788px] max-md:w-[630px] max-md:opacity-55"
+          className="size-full max-w-none flex-none object-contain opacity-65 [filter:saturate(1.08)_contrast(1.04)_drop-shadow(0_0_44px_rgba(57,163,255,0.16))] max-md:opacity-45"
         />
       </div>
       {INTRO_SQUARES.map((square, index) => (
