@@ -42,6 +42,11 @@ import touchdesignerGalleryTwo from "../assets/project-galleries/touchdesigner-0
 import lightBendingGalleryOne from "../assets/project-galleries/light-bending-01.webp";
 import lightBendingGalleryTwo from "../assets/project-galleries/light-bending-03.webp";
 import bassGallery from "../assets/project-galleries/bass-robot-01.webp";
+import rhythmsNight from "../assets/project-galleries/rhythms-of-chaos-night.webp";
+import rhythmsSetup from "../assets/project-galleries/rhythms-of-chaos-setup.webp";
+import rhythmsTeamSetup from "../assets/project-galleries/rhythms-of-chaos-team-setup.webp";
+import rhythmsTeam from "../assets/project-galleries/rhythms-of-chaos-team.webp";
+import rhythmsDetail from "../assets/project-galleries/rhythms-of-chaos-detail.webp";
 import chevronLeft from "../assets/icons/chevron-left.svg";
 
 const tagListClassName =
@@ -132,7 +137,14 @@ const projects = [
 ];
 
 const projectGalleries = {
-  "Rhythms of Chaos": [rhythms],
+  "Rhythms of Chaos": [
+    rhythms,
+    rhythmsNight,
+    rhythmsSetup,
+    rhythmsTeamSetup,
+    rhythmsTeam,
+    rhythmsDetail,
+  ],
   "Kinetic Creatures": [kineticGallery],
   "Bass Robot": [bassGallery],
   "Live-coding Workshop with Endemics Collective": [
