@@ -95,7 +95,7 @@ function FigureButton({ figure, index, activeCard, setActiveCard }) {
   return (
     <>
       <div
-        className={`pointer-events-none absolute inset-0 transition-[filter,opacity,transform] duration-500 ease-out ${visualState}`}
+        className={`figure-visual pointer-events-none absolute inset-0 transition-[filter,opacity,transform] duration-500 ease-out ${visualState}`}
         aria-hidden="true"
       >
         <img
@@ -106,7 +106,7 @@ function FigureButton({ figure, index, activeCard, setActiveCard }) {
       </div>
       <button
         type="button"
-        className="absolute top-0 bottom-0 z-10 cursor-pointer border-0 bg-transparent p-0"
+        className="figure-hit absolute top-0 bottom-0 z-10 cursor-pointer border-0 bg-transparent p-0"
         onClick={() => setActiveCard(index)}
         aria-label={`Show ${figure.label} card`}
         aria-pressed={active}

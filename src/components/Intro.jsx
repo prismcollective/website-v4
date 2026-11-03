@@ -32,7 +32,7 @@ export default function Intro() {
       className="relative min-h-[532px] w-full overflow-visible p-0 md:min-h-[878px] md:py-24 md:pt-[153px]"
     >
       <div
-        className="pointer-events-none absolute top-[18px] left-0 flex h-[760px] w-[520px] items-center justify-center max-md:top-[92px] max-md:right-[-176px] max-md:left-auto max-md:h-[540px] max-md:w-[432px]"
+        className="illustration-glow absolute top-[18px] left-0 flex h-[760px] w-[520px] items-center justify-center max-md:top-[92px] max-md:right-[-176px] max-md:left-auto max-md:h-[540px] max-md:w-[432px]"
         aria-hidden="true"
       >
         <img
@@ -110,7 +110,7 @@ export default function Intro() {
             />
           </span>{" "}
           where artists, engineers, scientists, and designers come together{" "}
-          <span className="relative inline-block h-[1em] w-[1.65em] align-baseline">
+          <span className="illustration-glow relative inline-block h-[1em] w-[1.65em] align-baseline">
             <img
               src={MISSION_ART}
               alt=""

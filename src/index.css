@@ -39,6 +39,19 @@
       0 0 16px rgba(255, 255, 255, 0.72),
       0 0 30px rgba(255, 255, 255, 0.46);
   }
+
+  .illustration-glow:hover,
+  .figure-visual:has(+ .figure-hit:hover) img {
+    filter:
+      drop-shadow(0 0 7px rgba(255, 255, 255, 0.72))
+      drop-shadow(0 0 20px rgba(126, 211, 255, 0.5))
+      drop-shadow(0 0 38px rgba(192, 124, 255, 0.32));
+  }
+}
+
+.illustration-glow,
+.figure-visual img {
+  transition: filter 320ms ease-out;
 }
 
 @keyframes carousel-copy-in {

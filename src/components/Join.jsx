@@ -36,11 +36,13 @@ function JoinArtwork() {
       aria-label="A luminous abstract form representing creative collaboration"
       role="img"
     >
-      <img
-        src={JOIN_ART}
-        alt=""
-        className="pointer-events-none absolute top-[-11%] left-[3%] h-auto w-[65%] max-w-none [filter:saturate(1.08)_contrast(1.03)_drop-shadow(0_0_42px_rgba(191,255,167,0.14))]"
-      />
+      <div className="illustration-glow absolute top-[-11%] left-[3%] w-[65%]">
+        <img
+          src={JOIN_ART}
+          alt=""
+          className="pointer-events-none h-auto w-full max-w-none [filter:saturate(1.08)_contrast(1.03)_drop-shadow(0_0_42px_rgba(191,255,167,0.14))]"
+        />
+      </div>
 
       {JOIN_SQUARES.map(
         ({ left, top, width, height, color, targetKey }, index) => (
