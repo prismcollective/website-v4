@@ -7,11 +7,15 @@ import Intro from "./components/Intro";
 import Join from "./components/Join";
 import Projects from "./components/Projects";
 import Sponsors from "./components/Sponsors";
+import useIllustrationGlow from "./hooks/useIllustrationGlow";
 import useScrollReveal from "./hooks/useScrollReveal";
+import useTextGlow from "./hooks/useTextGlow";
 
 export default function App() {
   const pageRef = useRef(null);
+  useIllustrationGlow(pageRef);
   useScrollReveal(pageRef);
+  useTextGlow(pageRef);
 
   return (
     <div className="overflow-x-clip" ref={pageRef}>

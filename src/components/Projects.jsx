@@ -42,6 +42,12 @@ import touchdesignerGalleryTwo from "../assets/project-galleries/touchdesigner-0
 import lightBendingGalleryOne from "../assets/project-galleries/light-bending-01.webp";
 import lightBendingGalleryTwo from "../assets/project-galleries/light-bending-03.webp";
 import bassGallery from "../assets/project-galleries/bass-robot-01.webp";
+import rhythmsNight from "../assets/project-galleries/rhythms-of-chaos-night.webp";
+import rhythmsSetup from "../assets/project-galleries/rhythms-of-chaos-setup.webp";
+import rhythmsTeamSetup from "../assets/project-galleries/rhythms-of-chaos-team-setup.webp";
+import rhythmsTeam from "../assets/project-galleries/rhythms-of-chaos-team.webp";
+import rhythmsDetail from "../assets/project-galleries/rhythms-of-chaos-detail.webp";
+import rhythmsPress from "../assets/project-galleries/rhythms-of-chaos-press.webp";
 import chevronLeft from "../assets/icons/chevron-left.svg";
 
 const tagListClassName =
@@ -132,7 +138,15 @@ const projects = [
 ];
 
 const projectGalleries = {
-  "Rhythms of Chaos": [rhythms],
+  "Rhythms of Chaos": [
+    rhythms,
+    rhythmsNight,
+    rhythmsSetup,
+    rhythmsTeamSetup,
+    rhythmsTeam,
+    rhythmsDetail,
+    rhythmsPress,
+  ],
   "Kinetic Creatures": [kineticGallery],
   "Bass Robot": [bassGallery],
   "Live-coding Workshop with Endemics Collective": [
@@ -172,7 +186,7 @@ const projectGalleries = {
 
 const descriptions = {
   "Rhythms of Chaos":
-    "Rhythms of Chaos transforms the unpredictable motion of layered double pendulums into an immersive interplay of light, sound, and movement, challenging fixed notions of time and control. As PRISM’s first large-scale installation, the work was exhibited for six weeks at Trillium Park as part of Lumière, and will be showcased again at Nuit Blanche this fall.",
+    "Rhythms of Chaos transforms the unpredictable motion of layered double pendulums into an immersive interplay of light, sound, and movement. After a six-week run at Trillium Park for Lumière, a rebuilt V2 of PRISM’s largest kinetic sculpture was presented overnight at Nuit Blanche Toronto at Wychwood Barns.",
   "Kinetic Creatures":
     "An installation of custom, motorized creatures and plants with flowing, organic motion, utilizing mechanical principles to create realistic illusions.",
   "Bass Robot":
@@ -202,6 +216,26 @@ const descriptions = {
   "Art Tech Hangouts":
     "Open gatherings for making, learning, experimenting, and meeting creative technologists.",
 };
+
+const projectLinks = {
+  "Rhythms of Chaos": [
+    {
+      label: "BlogTO",
+      href: "https://www.blogto.com/radar/2026/09/must-see-nuit-blanche-toronto-2026-installations/",
+    },
+    {
+      label: "Wychwood Barns",
+      href: "https://www.wychwoodbarns.ca/rhythms-of-chaos-at-nuit-blanche",
+    },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/p/Dd_6uM-jE2K/?img_index=9",
+    },
+  ],
+};
+
+const galleryImageFit = (image) =>
+  image === rhythmsPress ? "object-contain" : "object-cover";
 
 function ProjectCard({
   project,
@@ -248,6 +282,7 @@ function ProjectCard({
 function ProjectCarousel({ project, onClose }) {
   const [year, title, , tags] = project;
   const images = projectGalleries[title];
+  const links = projectLinks[title] ?? [];
   const [imageIndex, setImageIndex] = useState(0);
   const previousIndex = (imageIndex - 1 + images.length) % images.length;
   const nextIndex = (imageIndex + 1) % images.length;
@@ -317,6 +352,22 @@ function ProjectCarousel({ project, onClose }) {
               </span>
             ))}
           </div>
+          {links.length > 0 && (
+            <div className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm">
+              <span className="opacity-60">Coverage</span>
+              {links.map(({ label, href }) => (
+                <a
+                  className="underline decoration-white/45 underline-offset-4 transition-opacity hover:opacity-70"
+                  href={href}
+                  key={href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {label} ↗
+                </a>
+              ))}
+            </div>
+          )}
         </div>
         <div
           className="relative left-1/2 grid w-max -translate-x-1/2 animate-[carousel-stage-in_0.38s_cubic-bezier(0.22,0.75,0.25,1)_both] grid-cols-[minmax(220px,602px)_minmax(320px,602px)_minmax(220px,602px)] items-center gap-[7.25rem] justify-self-start max-[800px]:grid-cols-[70vw_82vw_70vw] max-[800px]:gap-4"
@@ -324,7 +375,7 @@ function ProjectCarousel({ project, onClose }) {
         >
           {images.length > 2 ? (
             <img
-              className="h-[min(560px,58vh)] w-[602px] object-cover opacity-70 max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full max-[800px]:opacity-45"
+              className={`h-[min(560px,58vh)] w-[602px] opacity-70 max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full max-[800px]:opacity-45 ${galleryImageFit(images[previousIndex])}`}
               src={images[previousIndex]}
               alt=""
               aria-hidden="true"
@@ -334,14 +385,14 @@ function ProjectCarousel({ project, onClose }) {
             <div aria-hidden="true" />
           )}
           <img
-            className="relative z-[1] h-[min(560px,58vh)] w-[602px] object-cover max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full"
+            className={`relative z-[1] h-[min(560px,58vh)] w-[602px] max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full ${galleryImageFit(images[imageIndex])}`}
             src={images[imageIndex]}
             alt={`${title}, photo ${imageIndex + 1} of ${images.length}`}
             data-carousel-content
           />
           {images.length > 1 ? (
             <img
-              className="h-[min(560px,58vh)] w-[602px] object-cover opacity-70 max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full max-[800px]:opacity-45"
+              className={`h-[min(560px,58vh)] w-[602px] opacity-70 max-[800px]:h-[min(54vh,520px)] max-[800px]:w-full max-[800px]:opacity-45 ${galleryImageFit(images[nextIndex])}`}
               src={images[nextIndex]}
               alt=""
               aria-hidden="true"
@@ -411,10 +462,9 @@ export default function Projects() {
             <p className="m-0 text-base leading-[1.2] md:text-[1.45rem] md:leading-[1.25]">
               Rhythms of Chaos transforms the unpredictable motion of layered
               double pendulums into an immersive interplay of light, sound, and
-              movement, challenging fixed notions of time and control. As
-              PRISM’s first large-scale installation, the work was exhibited
-              for six weeks at Trillium Park as part of Lumière, and will be
-              showcased again at Nuit Blanche this fall.
+              movement. After a six-week run at Trillium Park for Lumière, a
+              rebuilt V2 of PRISM’s largest kinetic sculpture was presented
+              overnight at Nuit Blanche Toronto at Wychwood Barns.
             </p>
             <button
               className="inline-flex w-fit items-center gap-1 rounded border border-[var(--border-primary)] bg-transparent px-2 py-[7px] text-base transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--text-primary)] hover:text-[var(--surface-page)] md:gap-[0.45rem] md:px-4 md:py-[0.7rem] md:text-[clamp(1.1rem,1.6vw,1.5rem)] md:font-medium"

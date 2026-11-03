@@ -32,6 +32,10 @@
   }
 }
 
+[data-illustration-glow] {
+  transition: filter 320ms ease-out;
+}
+
 @keyframes carousel-copy-in {
   from {
     opacity: 0;
@@ -41,6 +45,33 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes figure-selected-glow {
+  0%,
+  100% {
+    filter: saturate(1.16) contrast(1.06) brightness(1.04)
+      drop-shadow(0 0 10px rgba(255, 255, 255, 0.38))
+      drop-shadow(0 0 26px rgba(255, 255, 255, 0.2));
+  }
+
+  50% {
+    filter: saturate(1.24) contrast(1.1) brightness(1.1)
+      drop-shadow(0 0 15px rgba(255, 255, 255, 0.78))
+      drop-shadow(0 0 42px rgba(255, 255, 255, 0.42));
+  }
+}
+
+.figure-selected {
+  animation: figure-selected-glow 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figure-selected {
+    animation: none;
+    filter: saturate(1.2) contrast(1.08) brightness(1.08)
+      drop-shadow(0 0 20px rgba(255, 255, 255, 0.55));
   }
 }
 

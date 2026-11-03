@@ -1,21 +1,17 @@
 import ARROW_SMALL from "../assets/icons/footer-arrow.svg";
-import FIGURE_BLUE from "../assets/join/figure-blue.svg";
-import FIGURE_CENTER from "../assets/join/figure-center.svg";
-import FIGURE_LEFT from "../assets/join/figure-left.svg";
-import FIGURE_PURPLE from "../assets/join/figure-purple.svg";
-import FIGURE_YELLOW from "../assets/join/figure-yellow.svg";
+import JOIN_ART from "../assets/illustrations/prism-join.webp";
 import InteractiveSquare from "./InteractiveSquare";
 
 const JOIN_COLORS = [
-  "#ad2694",
-  "#09daff",
-  "#f04181",
-  "#ffc340",
-  "#cd59a4",
-  "#e3d698",
-  "#c1bed5",
-  "#c8e2b4",
-  "#b469b3",
+  "#f4f7a2",
+  "#d9ffb7",
+  "#b7f3e2",
+  "#aee9ff",
+  "#d6c7ff",
+  "#f5c8e6",
+  "#fff0a8",
+  "#cce8c7",
+  "#d9f6ff",
 ];
 
 const JOIN_ARTWORK_ASPECT_RATIO = 992 / 628;
@@ -37,34 +33,19 @@ function JoinArtwork() {
   return (
     <div
       className="relative aspect-[992/628] w-full"
-      aria-label="Five colourful figures reaching toward one another"
+      aria-label="A luminous abstract form representing creative collaboration"
       role="img"
     >
-      <img
-        src={FIGURE_LEFT}
-        alt=""
-        className="absolute top-0 left-[9.92%] h-[40.69%] w-[35.87%]"
-      />
-      <img
-        src={FIGURE_CENTER}
-        alt=""
-        className="absolute top-[8.03%] left-[47.18%] h-[37.28%] w-[33.35%]"
-      />
-      <img
-        src={FIGURE_BLUE}
-        alt=""
-        className="absolute top-[45.44%] left-[5.96%] h-[46.78%] w-[27.48%] rotate-[12.22deg] skew-x-[-1.66deg]"
-      />
-      <img
-        src={FIGURE_PURPLE}
-        alt=""
-        className="absolute top-[58.69%] left-[31.55%] h-[37.44%] w-[32.29%]"
-      />
-      <img
-        src={FIGURE_YELLOW}
-        alt=""
-        className="absolute top-[46.63%] left-[65.35%] h-[47.6%] w-[30.23%] -rotate-[17.59deg] skew-x-[2.29deg]"
-      />
+      <div
+        className="absolute top-[-11%] left-[3%] w-[65%]"
+        data-illustration-glow
+      >
+        <img
+          src={JOIN_ART}
+          alt=""
+          className="pointer-events-none h-auto w-full max-w-none [filter:saturate(1.08)_contrast(1.03)_drop-shadow(0_0_42px_rgba(191,255,167,0.14))]"
+        />
+      </div>
 
       {JOIN_SQUARES.map(
         ({ left, top, width, height, color, targetKey }, index) => (
