@@ -3,15 +3,15 @@ import JOIN_ART from "../assets/illustrations/prism-join.webp";
 import InteractiveSquare from "./InteractiveSquare";
 
 const JOIN_COLORS = [
-  "#ad2694",
-  "#09daff",
-  "#f04181",
-  "#ffc340",
-  "#cd59a4",
-  "#e3d698",
-  "#c1bed5",
-  "#c8e2b4",
-  "#b469b3",
+  "#f4f7a2",
+  "#d9ffb7",
+  "#b7f3e2",
+  "#aee9ff",
+  "#d6c7ff",
+  "#f5c8e6",
+  "#fff0a8",
+  "#cce8c7",
+  "#d9f6ff",
 ];
 
 const JOIN_ARTWORK_ASPECT_RATIO = 992 / 628;
