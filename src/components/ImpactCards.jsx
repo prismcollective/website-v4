@@ -89,8 +89,8 @@ function HistoryCard({ card }) {
 function FigureButton({ figure, index, activeCard, setActiveCard }) {
   const active = activeCard === index;
   const visualState = active
-    ? "z-[7] scale-[1.015] opacity-100 [filter:saturate(1.2)_contrast(1.08)_brightness(1.06)_drop-shadow(0_0_28px_rgba(255,255,255,0.2))]"
-    : "z-[5] scale-[0.985] opacity-55 [filter:saturate(0.55)_contrast(0.9)_brightness(0.72)_blur(1.5px)] hover:scale-[0.995] hover:opacity-78 hover:[filter:saturate(0.85)_contrast(0.96)_brightness(0.9)_blur(0.5px)]";
+    ? "figure-selected z-[7] scale-[1.02] opacity-100"
+    : "z-[5] scale-[0.99] opacity-90 [filter:saturate(1.05)_contrast(1.02)_brightness(0.98)]";
 
   return (
     <>
