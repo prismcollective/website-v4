@@ -5,9 +5,9 @@ import LINE_MIDDLE from "../assets/impact/history-line-middle.svg";
 import LINE_VERTICAL from "../assets/impact/history-line-vertical.svg";
 import LINES_CENTER from "../assets/impact/history-lines-center.svg";
 import LINES_RIGHT from "../assets/impact/history-lines-right.svg";
-import PERSON_LEFT from "../assets/intro/person-left.svg";
-import PERSON_MIDDLE from "../assets/intro/person-middle.svg";
-import PERSON_RIGHT from "../assets/intro/person-right.svg";
+import FIGURE_LEFT from "../assets/illustrations/prism-figure-1.webp";
+import FIGURE_MIDDLE from "../assets/illustrations/prism-figure-2.webp";
+import FIGURE_RIGHT from "../assets/illustrations/prism-figure-3.webp";
 
 const CARDS = [
   {
@@ -29,35 +29,19 @@ const CARDS = [
 
 const FIGURES = [
   {
-    src: PERSON_LEFT,
+    src: FIGURE_LEFT,
     label: "The gap",
-    aspect: "40.6473 / 76.6452",
-    desktop: { top: 0, left: "39.53%", width: "28.92%" },
-    mobile: { top: "8.2%", left: 0, height: "89.1%", width: "47.82%" },
+    hitArea: "polygon(0 0, 55% 0, 55% 100%, 0 100%)",
   },
   {
-    src: PERSON_MIDDLE,
+    src: FIGURE_MIDDLE,
     label: "The structure",
-    aspect: "43.0141 / 77.0755",
-    desktop: { top: 21, left: "58.49%", width: "30.6%" },
-    mobile: {
-      top: "10.5%",
-      left: "31.35%",
-      height: "89.6%",
-      width: "50.61%",
-    },
+    hitArea: "polygon(24% 0, 76% 0, 76% 100%, 24% 100%)",
   },
   {
-    src: PERSON_RIGHT,
+    src: FIGURE_RIGHT,
     label: "The impact",
-    aspect: "30.6656 / 77.0755",
-    desktop: { top: 19, left: "78.18%", width: "21.82%" },
-    mobile: {
-      top: "10.5%",
-      right: 0,
-      height: "89.6%",
-      width: "36.08%",
-    },
+    hitArea: "polygon(52% 0, 100% 0, 100% 100%, 52% 100%)",
   },
 ];
 
@@ -99,26 +83,20 @@ function HistoryCard({ card }) {
   );
 }
 
-function FigureButton({ figure, index, activeCard, setActiveCard, mobile }) {
+function FigureButton({ figure, index, activeCard, setActiveCard }) {
   const active = activeCard === index;
-  const visualState = mobile
-    ? active
-      ? "z-[6] blur-0 opacity-100"
-      : "blur-[7px] opacity-60 hover:blur-[3px] hover:opacity-80"
-    : "blur-0 opacity-100";
+  const visualState = active
+    ? "z-[7] scale-[1.015] opacity-100 [filter:saturate(1.2)_contrast(1.08)_brightness(1.06)_drop-shadow(0_0_28px_rgba(255,255,255,0.2))]"
+    : "z-[5] scale-[0.985] opacity-55 [filter:saturate(0.55)_contrast(0.9)_brightness(0.72)_blur(1.5px)] hover:scale-[0.995] hover:opacity-78 hover:[filter:saturate(0.85)_contrast(0.96)_brightness(0.9)_blur(0.5px)]";
 
   return (
     <button
       type="button"
-      className={`group absolute z-[5] cursor-pointer border-0 bg-transparent p-0 transition-[filter,opacity] duration-500 ${visualState}`}
+      className={`group absolute inset-0 cursor-pointer border-0 bg-transparent p-0 transition-[filter,opacity,transform] duration-500 ease-out ${visualState}`}
       onClick={() => setActiveCard(index)}
       aria-label={`Show ${figure.label} card`}
       aria-pressed={active}
-      style={
-        mobile
-          ? figure.mobile
-          : { ...figure.desktop, aspectRatio: figure.aspect }
-      }
+      style={{ clipPath: figure.hitArea }}
     >
       <img
         src={figure.src}
@@ -150,7 +128,7 @@ export default function ImpactCards() {
           className="relative w-full overflow-visible [--figure-connector-stroke:1px]"
           role="group"
           aria-label="Choose a figure to highlight its story"
-          style={{ aspectRatio: "361 / 395.1337" }}
+          style={{ aspectRatio: "4000 / 3184" }}
         >
           {FIGURES.map((figure, index) => (
             <FigureButton
@@ -159,20 +137,19 @@ export default function ImpactCards() {
               index={index}
               activeCard={activeCard}
               setActiveCard={selectCard}
-              mobile
             />
           ))}
           {/* The negative bottom crosses the flex gap and meets the card border. */}
           <span
             key={`mobile-line-${activeCard}-${connectorAnimation}`}
-            className="pointer-events-none absolute top-[43.05%] bottom-[-17px] z-[8] w-[var(--figure-connector-stroke)] origin-top animate-[connector-mobile-straight-in_700ms_cubic-bezier(0.22,0.75,0.25,1)_both] bg-[linear-gradient(to_bottom,#fff_0%,#fff_72%,var(--border-primary)_100%)]"
-            style={{ left: ["34.5%", "59.2%", "86.6%"][activeCard] }}
+            className="pointer-events-none absolute top-[52%] bottom-[-17px] z-[8] w-[var(--figure-connector-stroke)] origin-top animate-[connector-mobile-straight-in_700ms_cubic-bezier(0.22,0.75,0.25,1)_both] bg-[linear-gradient(to_bottom,#fff_0%,#fff_72%,var(--border-primary)_100%)]"
+            style={{ left: ["27%", "51%", "77%"][activeCard] }}
             aria-hidden="true"
           />
           <span
             key={`mobile-square-${activeCard}-${connectorAnimation}`}
-            className="pointer-events-none absolute top-[37.2%] z-10 aspect-square w-[6.4%] animate-[connector-square-in_260ms_ease-out_both] border-[length:var(--figure-connector-stroke)] border-white"
-            style={{ left: ["31.3%", "56%", "83.4%"][activeCard] }}
+            className="pointer-events-none absolute top-[45%] z-10 aspect-square w-[6.4%] animate-[connector-square-in_260ms_ease-out_both] border-[length:var(--figure-connector-stroke)] border-white"
+            style={{ left: ["23.8%", "47.8%", "73.8%"][activeCard] }}
             aria-hidden="true"
           />
         </div>
@@ -183,15 +160,17 @@ export default function ImpactCards() {
       </div>
 
       <div className="relative hidden min-h-[1160px] w-full overflow-hidden min-[1100px]:block">
-        {FIGURES.map((figure, index) => (
-          <FigureButton
-            key={figure.label}
-            figure={figure}
-            index={index}
-            activeCard={activeCard}
-            setActiveCard={selectCard}
-          />
-        ))}
+        <div className="absolute top-0 left-[30%] aspect-[4000/3184] w-[70%]">
+          {FIGURES.map((figure, index) => (
+            <FigureButton
+              key={figure.label}
+              figure={figure}
+              index={index}
+              activeCard={activeCard}
+              setActiveCard={selectCard}
+            />
+          ))}
+        </div>
 
         <div
           className="pointer-events-none absolute top-[230px] left-[38.5%] z-10 h-[355px] w-[39.17%]"

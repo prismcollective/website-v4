@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import heroArt from "../assets/hero/catalyst.webp";
+import heroArt from "../assets/illustrations/prism-hero.webp";
 import Header from "./Header";
 import HeroSquares from "./HeroSquares";
 
@@ -104,8 +104,12 @@ export default function Hero() {
       onPointerMove={updateLetterGlow}
       onPointerLeave={resetLetterGlow}
     >
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,rgba(41,92,255,0.24),transparent_42%),radial-gradient(circle_at_42%_80%,rgba(255,31,143,0.16),transparent_36%)]"
+        aria-hidden="true"
+      />
       <img
-        className={`absolute -inset-px h-[calc(100%+2px)] w-[calc(100%+2px)] max-w-none scale-[1.01] object-cover object-center transition-opacity duration-1000 ease-out ${artLoaded ? "opacity-100" : "opacity-0"}`}
+        className={`pointer-events-none absolute top-[-8%] right-[-4%] h-[118%] w-auto max-w-none object-contain transition-[opacity,transform,filter] duration-1000 ease-out [filter:saturate(1.08)_contrast(1.04)_drop-shadow(0_0_50px_rgba(57,163,255,0.2))] max-[800px]:top-[14%] max-[800px]:right-[-38%] max-[800px]:h-[92%] ${artLoaded ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
         src={heroArt}
         alt=""
         aria-hidden="true"

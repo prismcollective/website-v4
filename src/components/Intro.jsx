@@ -3,10 +3,8 @@ import UWATERLOO_CREST from "../assets/intro/uwaterloo-crest.png";
 import CIRCUIT_BOARD from "../assets/intro/circuit-board.webp";
 import GLOW from "../assets/intro/glow.png";
 import LEFT_GLOW from "../assets/intro/left-glow.svg";
-import PERSON_LEFT from "../assets/intro/person-left.svg";
-import PERSON_MIDDLE from "../assets/intro/person-middle.svg";
-import PERSON_RIGHT from "../assets/intro/person-right.svg";
 import SPARKLES from "../assets/intro/sparkles.svg";
+import MISSION_ART from "../assets/illustrations/prism-mission-composite.webp";
 import InteractiveSquare from "./InteractiveSquare";
 
 const INTRO_COLORS = ["#f2ffa1", "#ff096c", "#09daff", "#b469b3"];
@@ -112,20 +110,12 @@ export default function Intro() {
             />
           </span>{" "}
           where artists, engineers, scientists, and designers come together{" "}
-          <span className="relative inline-block h-[1em] w-[1.15em] align-baseline">
-            <span className="absolute top-1/2 left-0 flex h-[1.24em] -translate-y-1/2 items-end md:h-[1.3em]">
-              <img src={PERSON_LEFT} alt="" className="h-full w-auto" />
-              <img
-                src={PERSON_MIDDLE}
-                alt=""
-                className="-ml-[0.22em] h-full w-auto md:-ml-[0.3em]"
-              />
-              <img
-                src={PERSON_RIGHT}
-                alt=""
-                className="-ml-[0.22em] h-full w-auto md:-ml-[0.28em]"
-              />
-            </span>
+          <span className="relative inline-block h-[1em] w-[1.65em] align-baseline">
+            <img
+              src={MISSION_ART}
+              alt=""
+              className="absolute top-1/2 left-0 h-[1.55em] w-[1.65em] -translate-y-1/2 object-contain [filter:saturate(1.08)_contrast(1.04)]"
+            />
           </span>{" "}
           to{" "}
           <span className="relative inline-block h-[1em] w-[2.37em] align-baseline">
