@@ -36,7 +36,10 @@ function JoinArtwork() {
       aria-label="A luminous abstract form representing creative collaboration"
       role="img"
     >
-      <div className="illustration-glow absolute top-[-11%] left-[3%] w-[65%]">
+      <div
+        className="absolute top-[-11%] left-[3%] w-[65%]"
+        data-illustration-glow
+      >
         <img
           src={JOIN_ART}
           alt=""

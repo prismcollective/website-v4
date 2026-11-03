@@ -101,6 +101,7 @@ function FigureButton({ figure, index, activeCard, setActiveCard }) {
         <img
           src={figure.src}
           alt=""
+          data-illustration-glow
           className={`block size-full object-contain transition-transform duration-500 ease-out ${figure.imageClass}`}
         />
       </div>
