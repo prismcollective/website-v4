@@ -31,17 +31,20 @@ const FIGURES = [
   {
     src: FIGURE_LEFT,
     label: "The gap",
-    hitArea: "polygon(0 0, 55% 0, 55% 100%, 0 100%)",
+    hitArea: { left: "0%", width: "34%" },
+    imageClass: "-translate-x-[4%] scale-[0.96]",
   },
   {
     src: FIGURE_MIDDLE,
     label: "The structure",
-    hitArea: "polygon(24% 0, 76% 0, 76% 100%, 24% 100%)",
+    hitArea: { left: "34%", width: "32%" },
+    imageClass: "scale-[0.96]",
   },
   {
     src: FIGURE_RIGHT,
     label: "The impact",
-    hitArea: "polygon(52% 0, 100% 0, 100% 100%, 52% 100%)",
+    hitArea: { left: "66%", width: "34%" },
+    imageClass: "translate-x-[4%] scale-[0.96]",
   },
 ];
 
@@ -90,20 +93,26 @@ function FigureButton({ figure, index, activeCard, setActiveCard }) {
     : "z-[5] scale-[0.985] opacity-55 [filter:saturate(0.55)_contrast(0.9)_brightness(0.72)_blur(1.5px)] hover:scale-[0.995] hover:opacity-78 hover:[filter:saturate(0.85)_contrast(0.96)_brightness(0.9)_blur(0.5px)]";
 
   return (
-    <button
-      type="button"
-      className={`group absolute inset-0 cursor-pointer border-0 bg-transparent p-0 transition-[filter,opacity,transform] duration-500 ease-out ${visualState}`}
-      onClick={() => setActiveCard(index)}
-      aria-label={`Show ${figure.label} card`}
-      aria-pressed={active}
-      style={{ clipPath: figure.hitArea }}
-    >
-      <img
-        src={figure.src}
-        alt=""
-        className="block size-full object-contain"
+    <>
+      <div
+        className={`pointer-events-none absolute inset-0 transition-[filter,opacity,transform] duration-500 ease-out ${visualState}`}
+        aria-hidden="true"
+      >
+        <img
+          src={figure.src}
+          alt=""
+          className={`block size-full object-contain transition-transform duration-500 ease-out ${figure.imageClass}`}
+        />
+      </div>
+      <button
+        type="button"
+        className="absolute top-0 bottom-0 z-10 cursor-pointer border-0 bg-transparent p-0"
+        onClick={() => setActiveCard(index)}
+        aria-label={`Show ${figure.label} card`}
+        aria-pressed={active}
+        style={figure.hitArea}
       />
-    </button>
+    </>
   );
 }
 
@@ -139,6 +148,22 @@ export default function ImpactCards() {
               setActiveCard={selectCard}
             />
           ))}
+          <button
+            type="button"
+            className="absolute top-1/2 left-1 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/55 bg-black/35 text-2xl leading-none text-white backdrop-blur-sm transition hover:border-white hover:bg-black/60 min-[1100px]:hidden"
+            onClick={() => selectCard((activeCard + FIGURES.length - 1) % FIGURES.length)}
+            aria-label="Show previous mission figure"
+          >
+            <span aria-hidden="true">←</span>
+          </button>
+          <button
+            type="button"
+            className="absolute top-1/2 right-1 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/55 bg-black/35 text-2xl leading-none text-white backdrop-blur-sm transition hover:border-white hover:bg-black/60 min-[1100px]:hidden"
+            onClick={() => selectCard((activeCard + 1) % FIGURES.length)}
+            aria-label="Show next mission figure"
+          >
+            <span aria-hidden="true">→</span>
+          </button>
           {/* The negative bottom crosses the flex gap and meets the card border. */}
           <span
             key={`mobile-line-${activeCard}-${connectorAnimation}`}

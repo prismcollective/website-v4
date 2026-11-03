@@ -2,8 +2,8 @@ import PRISM_MARK from "../assets/intro/prism-mark.webp";
 import UWATERLOO_CREST from "../assets/intro/uwaterloo-crest.png";
 import CIRCUIT_BOARD from "../assets/intro/circuit-board.webp";
 import GLOW from "../assets/intro/glow.png";
-import LEFT_GLOW from "../assets/intro/left-glow.svg";
 import SPARKLES from "../assets/intro/sparkles.svg";
+import INTRO_ART from "../assets/illustrations/prism-intro.webp";
 import MISSION_ART from "../assets/illustrations/prism-mission-composite.webp";
 import InteractiveSquare from "./InteractiveSquare";
 
@@ -36,9 +36,9 @@ export default function Intro() {
         aria-hidden="true"
       >
         <img
-          src={LEFT_GLOW}
+          src={INTRO_ART}
           alt=""
-          className="h-[1150px] w-[1075px] max-w-none flex-none -rotate-90 max-md:h-[788px] max-md:w-[803px] max-md:opacity-40"
+          className="h-[1075px] w-[860px] max-w-none flex-none object-contain [filter:saturate(1.08)_contrast(1.04)_drop-shadow(0_0_44px_rgba(57,163,255,0.16))] max-md:h-[788px] max-md:w-[630px] max-md:opacity-55"
         />
       </div>
       {INTRO_SQUARES.map((square, index) => (
