@@ -39,7 +39,7 @@ export default function Intro() {
         <img
           src={INTRO_ART}
           alt=""
-          className="h-[1150px] w-[1075px] max-w-none flex-none -rotate-90 object-contain opacity-65 [filter:saturate(1.08)_contrast(1.04)_drop-shadow(0_0_44px_rgba(57,163,255,0.16))] max-md:h-[788px] max-md:w-[803px] max-md:opacity-40"
+          className="h-[1150px] w-[1075px] max-w-none flex-none rotate-90 object-contain opacity-40 [filter:blur(7px)_brightness(.82)_saturate(.92)_drop-shadow(0_0_44px_rgba(57,163,255,0.16))] max-md:h-[788px] max-md:w-[803px] max-md:opacity-30"
         />
       </div>
       {INTRO_SQUARES.map((square, index) => (
